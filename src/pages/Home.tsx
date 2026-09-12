@@ -7,6 +7,7 @@ import { ProcessSection } from '../components/ProcessSection'
 import { ProductsSection } from '../components/ProductsSection'
 import { Testimonials } from '../components/Testimonials'
 import { HireCta } from '../components/HireCta'
+import { ContactSection } from '../components/ContactSection'
 import { Seo } from '../components/Seo'
 
 export default function Home() {
@@ -24,6 +25,7 @@ export default function Home() {
       <ProcessSection />
       <ProductsSection limit={3} />
       <Testimonials />
+      <ContactSection />
       <HireCta />
       <Discover />
     </>

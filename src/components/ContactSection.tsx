@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 import { budgetOptions, company as defaultCompany, mapCompanyRow, serviceOptions } from '~/data/site'
 import { useLiveSingleton } from '~/lib/content'
 import { submitInquiry } from '~/server/inquiries'
+import { trackMetaPixelEvent } from '~/lib/metaPixel'
 import { ArrowRight, Clock, Lock, Mail, Phone, Pin, WhatsApp } from './Icons'
 import { SectionHead } from './PageHero'
 import { Button } from './ui/button'
@@ -38,6 +39,7 @@ export function ContactSection({ withHead = true }: { withHead?: boolean }) {
         },
       })
       form.reset()
+      trackMetaPixelEvent('Lead')
       setState({
         status: 'sent',
         message: 'Thanks — your inquiry is in. We reply within 24 hours.',
@@ -124,7 +126,7 @@ export function ContactSection({ withHead = true }: { withHead?: boolean }) {
                 about this project.
               </label>
 
-              <Button variant="pink" type="submit" disabled={sending}>
+              <Button variant="blue" type="submit" disabled={sending}>
                 {sending ? 'Sending…' : 'Send Project Inquiry'} <ArrowRight width={15} height={15} />
               </Button>
 

@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-const SITE_URL = 'https://www.pranamsoftware.com'
+const SITE_URL = 'https://www.pranamsoftware.com.np'
 
 function setMeta(selector: string, attr: string, content: string) {
   const el = document.head.querySelector(selector)

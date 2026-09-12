@@ -1,5 +1,6 @@
 import { AboutSection } from '../components/AboutSection'
 import { PageHero } from '../components/PageHero'
+import { Discover } from '../components/Discover'
 import { Seo } from '../components/Seo'
 
 export default function About() {
@@ -12,6 +13,7 @@ export default function About() {
       />
       <PageHero title="About Us" />
       <AboutSection withHead={false} />
+      <Discover />
     </>
   )
 }
