@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import { Nav } from './components/Nav'
 import { Footer } from './components/Footer'
 import { Marquee } from './components/Marquee'
+import { SocialFloatingBar } from './components/SocialFloatingBar'
 
 // Import page components
 import Home from './pages/Home'
@@ -29,6 +30,7 @@ import { Navigate } from 'react-router-dom'
 function SiteChrome() {
   return (
     <>
+      <SocialFloatingBar />
       <Marquee />
       <Nav />
       <Routes>
