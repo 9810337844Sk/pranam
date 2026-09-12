@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { serviceHighlights, services as defaultServices, type Service } from '~/data/site'
 import { useLiveContent } from '~/lib/content'
 import { BookingModal } from './BookingModal'
-import { ArrowRight, Check, Star, highlightIcons, serviceIcons } from './Icons'
+import { ArrowRight, Check, Star } from './Icons'
 import { SectionHead } from './PageHero'
 
 export function ServicesSection({ withHead = true }: { withHead?: boolean }) {
@@ -22,13 +22,9 @@ export function ServicesSection({ withHead = true }: { withHead?: boolean }) {
 
         <div className="svc-grid">
           {services.map((s) => {
-            const Icon = serviceIcons[s.icon]
             return (
               <article className={`svc svc-${s.color}`} key={s.title}>
                 <div className="svc-top">
-                  <div className="svc-ico">
-                    <Icon />
-                  </div>
                   <div>
                     <h3>{s.title}</h3>
                     <p>{s.body}</p>
@@ -54,23 +50,6 @@ export function ServicesSection({ withHead = true }: { withHead?: boolean }) {
                   Book This Service <ArrowRight />
                 </button>
               </article>
-            )
-          })}
-        </div>
-
-        <div className="svc-highlights">
-          {serviceHighlights.map((h) => {
-            const Icon = highlightIcons[h.icon]
-            return (
-              <div className="svc-highlight" key={h.title}>
-                <div className="svc-highlight-ico">
-                  <Icon />
-                </div>
-                <div>
-                  <b>{h.title}</b>
-                  <span>{h.body}</span>
-                </div>
-              </div>
             )
           })}
         </div>
