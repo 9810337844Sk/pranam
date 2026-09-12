@@ -12,15 +12,42 @@ export function useLiveContent<T>(table: string, fallback: T[], orderCol = 'sort
 
   useEffect(() => {
     let cancelled = false
-    if (!supabase) return
+    if (!supabase) {
+      console.info(`📋 Using fallback data for ${table} (Supabase not configured)`)
+      return
+    }
+
     supabase
       .from(table)
       .select('*')
       .order(orderCol, { ascending: true })
       .then(({ data, error }) => {
-        if (cancelled || error || !data || data.length === 0) return
+        if (cancelled) return
+        
+        if (error) {
+          // Check if it's a missing table error (404)
+          if (error.message?.includes('relation') && error.message?.includes('does not exist')) {
+            console.info(`📋 Table "${table}" doesn't exist yet, using fallback data. Run setup-database.sql to create it.`)
+          } else {
+            console.warn(`⚠️ Error fetching ${table}:`, error.message)
+          }
+          return // Use fallback data
+        }
+        
+        if (!data || data.length === 0) {
+          console.info(`📋 Table "${table}" is empty, using fallback data`)
+          return // Use fallback data
+        }
+        
+        console.info(`✅ Loaded ${data.length} items from ${table}`)
         setRows(data as T[])
       })
+      .catch((error) => {
+        if (!cancelled) {
+          console.info(`📋 Using fallback data for ${table} due to error:`, error.message)
+        }
+      })
+
     return () => {
       cancelled = true
     }
@@ -40,16 +67,42 @@ export function useLiveSingleton<T>(
 
   useEffect(() => {
     let cancelled = false
-    if (!supabase) return
+    if (!supabase) {
+      console.info(`📋 Using fallback data for ${table} (Supabase not configured)`)
+      return
+    }
+
     supabase
       .from(table)
       .select('*')
       .limit(1)
       .maybeSingle()
       .then(({ data, error }) => {
-        if (cancelled || error || !data) return
+        if (cancelled) return
+        
+        if (error) {
+          if (error.message?.includes('relation') && error.message?.includes('does not exist')) {
+            console.info(`📋 Table "${table}" doesn't exist yet, using fallback data. Run setup-database.sql to create it.`)
+          } else {
+            console.warn(`⚠️ Error fetching ${table}:`, error.message)
+          }
+          return // Use fallback data
+        }
+        
+        if (!data) {
+          console.info(`📋 No data in ${table}, using fallback`)
+          return // Use fallback data
+        }
+        
+        console.info(`✅ Loaded singleton data from ${table}`)
         setRow(map(data))
       })
+      .catch((error) => {
+        if (!cancelled) {
+          console.info(`📋 Using fallback data for ${table} due to error:`, error.message)
+        }
+      })
+
     return () => {
       cancelled = true
     }

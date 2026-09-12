@@ -173,14 +173,33 @@ section{padding-block:84px}
 .mktp-cta svg{width:14px;height:14px;fill:currentColor}
 
 /* ============ TECH STACK ============ */
-.tech{background:#EAF6F1;padding-block:52px}
+.tech{background:#EAF6F1;padding-block:52px;overflow:hidden}
 .tech-title{text-align:center;font-size:clamp(20px,2.6vw,26px);font-weight:800;color:var(--navy);margin-bottom:38px}
 .tech-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:48px 56px}
-.tech-item{display:flex;flex-direction:column;align-items:center;gap:10px;transition:.2s}
-.tech-item img{height:46px;width:auto;object-fit:contain;filter:grayscale(1) opacity(.55);transition:.25s}
-.tech-item span{font-size:12.5px;font-weight:600;color:#9AAAB8;transition:.2s}
-.tech-item:hover img{filter:none;transform:translateY(-4px)}
-.tech-item:hover span{color:var(--navy)}
+.tech-item{
+  display:flex;flex-direction:column;align-items:center;gap:10px;cursor:default;
+  opacity:0;transform:translateY(26px) scale(.9);
+  transition:opacity .55s cubic-bezier(.16,1,.3,1),transform .55s cubic-bezier(.16,1,.3,1);
+}
+.tech-row.in-view .tech-item{opacity:1;transform:translateY(0) scale(1)}
+.tech-ico-wrap{
+  display:grid;place-items:center;width:64px;height:64px;border-radius:16px;background:#fff;
+  box-shadow:var(--shadow-sm);transition:box-shadow .3s,background .3s;
+  animation:techFloat 3.6s ease-in-out infinite;
+}
+.tech-row.in-view .tech-item:hover .tech-ico-wrap{
+  animation-play-state:paused;box-shadow:0 14px 26px rgba(26,115,232,.22);background:var(--blue-soft);
+}
+.tech-row.in-view .tech-item:hover .tech-ico-wrap img{transform:rotate(-8deg) scale(1.15)}
+.tech-item img{height:34px;width:auto;object-fit:contain;filter:grayscale(1) opacity(.55);transition:filter .25s,transform .3s cubic-bezier(.34,1.56,.64,1)}
+.tech-item:hover img{filter:none}
+.tech-label{font-size:12.5px;font-weight:600;color:#9AAAB8;transition:color .2s}
+.tech-item:hover .tech-label{color:var(--navy)}
+@keyframes techFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@media (prefers-reduced-motion:reduce){
+  .tech-item{opacity:1;transform:none;transition:none}
+  .tech-ico-wrap{animation:none}
+}
 
 /* ============ PRICING ============ */
 .pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;align-items:stretch}
@@ -201,32 +220,204 @@ section{padding-block:84px}
 .pkg-cta svg{width:15px;height:15px;fill:currentColor}
 
 /* ============ SERVICES ============ */
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
-.svc{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px;display:flex;flex-direction:column;gap:18px;transition:.25s;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+.svc-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;transition:transform 0.5s ease-in-out}
+.svc{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:20px;transition:.25s;box-shadow:var(--shadow-sm);position:relative;overflow:hidden;min-height:400px}
 .svc::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s}
-.svc:hover{transform:translateY(-6px);box-shadow:0 18px 36px rgba(18,33,60,.14);border-color:transparent}
 .svc:hover::before{transform:scaleX(1)}
-.svc-top{display:flex;gap:14px;align-items:flex-start}
-.svc-ico{width:52px;height:52px;border-radius:14px;background:var(--blue-soft);display:grid;place-items:center;flex:0 0 auto}
-.svc-ico svg{width:24px;height:24px;fill:var(--blue)}
-.svc h3{font-size:17px;font-weight:700;margin-bottom:4px}
-.svc p{color:var(--muted);font-size:13.5px}
-.svc-body{display:flex;gap:10px;align-items:center;flex:1}
-.svc-feats{display:flex;flex-direction:column;gap:0;list-style:none;margin:0;padding:0;flex:1;min-width:0}
-.svc-feats li button{width:100%;text-align:left;background:none;border:0;padding:5px 4px;border-radius:7px;cursor:pointer;display:flex;align-items:center;gap:8px;font-size:12.5px;color:#3A4A61;font-weight:500}
-.svc-feats li button:hover{background:var(--grey);color:var(--navy)}
-.svc-feats li svg{width:13px;height:13px;fill:var(--accent);flex:0 0 auto}
-.svc-shot-wrap{flex:0 0 auto;width:42%;display:flex;justify-content:center;align-items:center}
-.svc-shot{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;background:transparent}
-.svc-book{color:var(--accent)!important;background:none;border:0;border-top:1px solid var(--line);padding:16px 0 0;margin-top:2px;font:inherit;cursor:pointer;font-size:14px;font-weight:700;display:inline-flex;align-items:center;justify-content:flex-start;gap:8px}
-.svc-book svg{width:13px;height:13px;fill:currentColor;transition:transform .2s}
-.svc-book:hover svg{transform:translateX(4px)}
-.svc-top h3 a{color:inherit}
-.svc-top h3 a:hover{color:var(--accent)}
-.svc-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:16px;margin-top:2px}
-.svc-learn{font-size:14px;font-weight:700;color:var(--muted)}
-.svc-learn:hover{color:var(--accent)}
-.svc-actions .svc-book{border-top:0;padding-top:0;margin-top:0}
+.svc:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+
+.svc-header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.svc-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 16px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.svc-icon-violet { background: var(--violet); color: white; }
+.svc-icon-pink { background: var(--pink); color: white; }
+.svc-icon-orange { background: var(--orange); color: white; }
+.svc-icon-blue { background: var(--blue); color: white; }
+.svc-icon-teal { background: #0FA98A; color: white; }
+
+.svc h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.svc p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.svc-features {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.svc-feature {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.svc-check {
+  width: 16px;
+  height: 16px;
+  fill: var(--blue);
+  flex-shrink: 0;
+}
+
+.svc-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.svc-learn {
+  color: var(--blue);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  text-align: center;
+  padding: 8px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.svc-learn:hover {
+  background: rgba(26, 115, 232, 0.1);
+}
+
+.svc-book {
+  background: var(--blue);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.svc-book:hover {
+  background: var(--blue-dk);
+  transform: translateY(-1px);
+}
+
+.svc-book svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Slide indicators */
+.svc-indicators {
+  display: none;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.svc-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: #ccc;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.svc-dot.active {
+  background: var(--blue);
+  transform: scale(1.2);
+}
+
+/* Mobile sliding styles */
+@media (max-width: 620px) {
+  .svc-container {
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .svc-grid {
+    display: flex;
+    gap: 0;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .svc-slide {
+    min-width: 100%;
+    flex-shrink: 0;
+    margin-right: 0;
+  }
+  
+  .svc-indicators {
+    display: flex;
+  }
+  
+  .svc {
+    margin: 0 16px;
+    min-height: 380px;
+  }
+  
+  .svc-header {
+    margin-bottom: 12px;
+  }
+  
+  .svc-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 12px;
+  }
+  
+  .svc h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  
+  .svc p {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+}
+
+/* Service color variants */
+.svc-violet{--accent:var(--violet)}
+.svc-pink{--accent:var(--pink)}
+.svc-orange{--accent:var(--orange)}
+.svc-blue{--accent:var(--blue)}
+.svc-teal{--accent:#0FA98A}
 
 /* ============ SERVICE DETAIL ============ */
 .svc-detail{padding-block:64px}

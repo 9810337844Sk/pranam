@@ -3,6 +3,7 @@ import { Nav } from './components/Nav'
 import { Footer } from './components/Footer'
 import { Marquee } from './components/Marquee'
 import { AnalyticsTracker } from './components/AnalyticsTracker'
+import { DatabaseStatus } from './components/DatabaseStatus'
 
 // Import page components
 import Home from './pages/Home'
@@ -30,10 +31,12 @@ import AdminTestimonials from './admin/Testimonials'
 import AdminBlog from './admin/Blog'
 import AdminBrands from './admin/Brands'
 import AdminCompanyInfo from './admin/CompanyInfo'
+import AdminImportContent from './admin/ImportContent'
 
 function SiteChrome() {
   return (
     <>
+      <DatabaseStatus />
       <AnalyticsTracker />
       <Marquee />
       <Nav />
@@ -85,6 +88,7 @@ function App() {
           <Route path="blog" element={<AdminBlog />} />
           <Route path="brands" element={<AdminBrands />} />
           <Route path="company" element={<AdminCompanyInfo />} />
+          <Route path="import" element={<AdminImportContent />} />
         </Route>
       </Route>
       <Route path="/*" element={<SiteChrome />} />

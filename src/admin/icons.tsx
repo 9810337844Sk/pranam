@@ -82,3 +82,8 @@ export const BadgeIcon = (p: P) => (
     <path d="M8.5 12.5 6 21l6-3 6 3-2.5-8.5" />
   </svg>
 )
+export const ImportIcon = (p: P) => (
+  <svg {...base} className={p.className}>
+    <path d="M12 3v12M7 10l5 5 5-5M4 21h16" />
+  </svg>
+)

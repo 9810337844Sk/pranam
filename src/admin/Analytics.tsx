@@ -38,14 +38,29 @@ export default function Analytics() {
         setLoading(false)
         return
       }
-      const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString()
-      const { data, error: err } = await supabase
-        .from('page_views')
-        .select('*')
-        .gte('created_at', since)
-        .order('created_at', { ascending: false })
-      if (err) setError(err.message)
-      else setRows((data ?? []) as PageView[])
+      
+      try {
+        const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString()
+        const { data, error: err } = await supabase
+          .from('page_views')
+          .select('*')
+          .gte('created_at', since)
+          .order('created_at', { ascending: false })
+        
+        if (err) {
+          // Check if it's a missing table error
+          if (err.message?.includes('relation') && err.message?.includes('does not exist')) {
+            setError('Analytics table not created yet. Run setup-database.sql to enable analytics tracking.')
+          } else {
+            setError(err.message)
+          }
+        } else {
+          setRows((data ?? []) as PageView[])
+        }
+      } catch (error) {
+        setError(`Failed to load analytics: ${error instanceof Error ? error.message : 'Unknown error'}`)
+      }
+      
       setLoading(false)
     }
     load()

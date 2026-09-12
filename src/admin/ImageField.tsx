@@ -1,10 +1,5 @@
 import { useRef, useState } from 'react'
-import { supabase } from '~/lib/supabase'
-
-function extOf(name: string) {
-  const m = /\.[a-zA-Z0-9]+$/.exec(name)
-  return m ? m[0] : ''
-}
+import { uploadImage } from '~/lib/cloudinary'
 
 export function ImageField({
   label,
@@ -23,21 +18,11 @@ export function ImageField({
     const file = e.target.files?.[0]
     e.target.value = ''
     if (!file) return
-    if (!supabase) {
-      setError('Supabase is not configured — add the env vars from .env.example.')
-      return
-    }
     setUploading(true)
     setError('')
     try {
-      const path = `uploads/${Date.now()}-${Math.random().toString(36).slice(2, 8)}${extOf(file.name)}`
-      const { error: uploadErr } = await supabase.storage.from('media').upload(path, file, {
-        cacheControl: '3600',
-        upsert: false,
-      })
-      if (uploadErr) throw uploadErr
-      const { data } = supabase.storage.from('media').getPublicUrl(path)
-      onChange(data.publicUrl)
+      const { secure_url } = await uploadImage(file)
+      onChange(secure_url)
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Upload failed.')
     } finally {

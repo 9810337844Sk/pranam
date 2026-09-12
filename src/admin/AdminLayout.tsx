@@ -7,6 +7,7 @@ import {
   BuildingIcon,
   ChartIcon,
   ExternalIcon,
+  ImportIcon,
   InboxIcon,
   LogoutIcon,
   PackageIcon,
@@ -26,6 +27,7 @@ const navItems = [
   { to: '/admin/blog', label: 'Blog', Icon: BlogIcon },
   { to: '/admin/brands', label: 'Trusted By', Icon: BadgeIcon },
   { to: '/admin/company', label: 'Company Info', Icon: BuildingIcon },
+  { to: '/admin/import', label: 'Import Content', Icon: ImportIcon },
 ]
 
 export default function AdminLayout() {
