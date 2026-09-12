@@ -154,10 +154,60 @@ export const serviceOptions = [
 ]
 
 export const budgetOptions = [
-  'Under NPR 50,000',
+  'NPR 10,000 – 50,000',
   'NPR 50,000 – 1,50,000',
   'NPR 1,50,000 – 5,00,000',
   'Above NPR 5,00,000',
+]
+
+export type Package = {
+  name: string
+  price: string
+  period?: string
+  description: string
+  features: string[]
+  highlighted?: boolean
+}
+
+export const packages: Package[] = [
+  {
+    name: 'Starter',
+    price: 'NPR 10,000',
+    description: 'A simple, professional online presence for small businesses just getting started.',
+    features: [
+      'Single-page website',
+      'Mobile responsive design',
+      'Basic SEO setup',
+      'Contact / WhatsApp button',
+      '1 round of revisions',
+    ],
+  },
+  {
+    name: 'Growth',
+    price: 'NPR 50,000',
+    description: 'For businesses ready to grow online with more pages and real lead generation.',
+    features: [
+      'Up to 5 pages',
+      'Contact form with inbox',
+      'On-page SEO optimization',
+      'WhatsApp & social integration',
+      'Admin panel for content',
+      '3 rounds of revisions',
+    ],
+    highlighted: true,
+  },
+  {
+    name: 'Enterprise',
+    price: 'Custom',
+    description: 'Custom web apps, mobile apps and software built around your exact business needs.',
+    features: [
+      'Custom web or mobile app',
+      'Admin dashboard & analytics',
+      'Third-party integrations',
+      'Database & backend setup',
+      'Dedicated support',
+    ],
+  },
 ]
 
 export const features = [

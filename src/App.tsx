@@ -8,6 +8,7 @@ import { AnalyticsTracker } from './components/AnalyticsTracker'
 import Home from './pages/Home'
 import About from './pages/About'
 import Services from './pages/Services'
+import ServiceDetail from './pages/ServiceDetail'
 import Products from './pages/Products'
 import Process from './pages/Process'
 import Team from './pages/Team'
@@ -40,6 +41,7 @@ function SiteChrome() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/services/:slug" element={<ServiceDetail />} />
         <Route path="/products" element={<Products />} />
         <Route path="/process" element={<Process />} />
         <Route path="/team" element={<Team />} />

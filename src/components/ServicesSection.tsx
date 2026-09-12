@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { serviceHighlights, services as defaultServices, type Service } from '~/data/site'
 import { useLiveContent } from '~/lib/content'
+import { slugify } from '~/lib/utils'
 import { BookingModal } from './BookingModal'
 import { ArrowRight, Check, Star } from './Icons'
 import { SectionHead } from './PageHero'
@@ -26,7 +27,9 @@ export function ServicesSection({ withHead = true }: { withHead?: boolean }) {
               <article className={`svc svc-${s.color}`} key={s.title}>
                 <div className="svc-top">
                   <div>
-                    <h3>{s.title}</h3>
+                    <h3>
+                      <Link to={`/services/${slugify(s.title)}`}>{s.title}</Link>
+                    </h3>
                     <p>{s.body}</p>
                   </div>
                 </div>
@@ -46,9 +49,14 @@ export function ServicesSection({ withHead = true }: { withHead?: boolean }) {
                   </div>
                 </div>
 
-                <button type="button" className="svc-book" onClick={() => setBooking(s.title)}>
-                  Book This Service <ArrowRight />
-                </button>
+                <div className="svc-actions">
+                  <Link to={`/services/${slugify(s.title)}`} className="svc-learn">
+                    Learn More
+                  </Link>
+                  <button type="button" className="svc-book" onClick={() => setBooking(s.title)}>
+                    Book This Service <ArrowRight />
+                  </button>
+                </div>
               </article>
             )
           })}

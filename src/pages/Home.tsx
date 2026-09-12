@@ -5,6 +5,7 @@ import { ServicesSection } from '../components/ServicesSection'
 import { TechStack } from '../components/TechStack'
 import { ProcessSection } from '../components/ProcessSection'
 import { ProductsSection } from '../components/ProductsSection'
+import { PricingSection } from '../components/PricingSection'
 import { Testimonials } from '../components/Testimonials'
 import { HireCta } from '../components/HireCta'
 import { ContactSection } from '../components/ContactSection'
@@ -24,6 +25,7 @@ export default function Home() {
       <TechStack />
       <ProcessSection />
       <ProductsSection limit={3} />
+      <PricingSection />
       <Testimonials />
       <ContactSection />
       <HireCta />

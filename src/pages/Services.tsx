@@ -1,4 +1,5 @@
 import { ServicesSection } from '../components/ServicesSection'
+import { PricingSection } from '../components/PricingSection'
 import { PageHero } from '../components/PageHero'
 import { Seo } from '../components/Seo'
 
@@ -12,6 +13,7 @@ export default function Services() {
       />
       <PageHero title="Our Services" />
       <ServicesSection withHead={false} />
+      <PricingSection />
     </>
   )
 }
