@@ -7,6 +7,7 @@ const footerLinks = [
   ...nav,
   { to: '/products', label: 'Works' },
   { to: '/team', label: 'Career' },
+  { to: '/blog', label: 'Blog' },
 ]
 
 export function Footer() {
