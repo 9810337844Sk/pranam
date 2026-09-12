@@ -1,0 +1,9 @@
+# Pranam Software - robots.txt
+# https://www.robotstxt.org/robotstxt.html
+
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin/
+
+Sitemap: https://www.pranamsoftware.com/sitemap.xml
