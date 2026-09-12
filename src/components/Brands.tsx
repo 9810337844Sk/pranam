@@ -1,6 +1,8 @@
-import { brands } from '~/data/site'
+import { brands as defaultBrands, type Brand } from '~/data/site'
+import { useLiveContent } from '~/lib/content'
 
 export function Brands() {
+  const brands = useLiveContent<Brand>('brands', defaultBrands)
   const loop = [...brands, ...brands]
   return (
     <section className="brands">

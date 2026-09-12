@@ -51,7 +51,6 @@ export const nav = [
   { to: '/about', label: 'About' },
   { to: '/services', label: 'Services' },
   { to: '/products', label: 'Product' },
-  { to: '/process', label: 'Process' },
   { to: '/team', label: 'Team' },
   { to: '/contact', label: 'Contact' },
 ] as const
@@ -188,7 +187,9 @@ export const techStack = [
   { name: 'Gradle', slug: 'gradle' },
 ]
 
-export const brands = [
+export type Brand = { name: string; logo: string }
+
+export const brands: Brand[] = [
   { name: 'Spotify', logo: 'https://api.myunicampus.com/6da490c2-415b-4732-9b44-b41fc1a2565b_1744952092980.png' },
   { name: 'Meta', logo: 'https://blog.logomyway.com/wp-content/uploads/2021/11/meta-logo.png' },
   { name: 'IT College Nepal', logo: 'https://itcollegenepal.com/wp-content/uploads/2021/08/download-1.png.webp' },

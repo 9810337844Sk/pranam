@@ -27,12 +27,18 @@ function waLink(phone: string) {
   return `https://wa.me/${phone.replace(/[^\d]/g, '')}`
 }
 
+function shortId(id: string) {
+  return `#${id.slice(0, 5).toUpperCase()}`
+}
+
 export default function Enquiries() {
   const [rows, setRows] = useState<Inquiry[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [filter, setFilter] = useState<(typeof statuses)[number]['value']>('all')
   const [search, setSearch] = useState('')
+  const [selected, setSelected] = useState<Set<string>>(new Set())
+  const [menuFor, setMenuFor] = useState<string | null>(null)
 
   async function refresh() {
     setLoading(true)
@@ -62,6 +68,15 @@ export default function Enquiries() {
     if (err) setError(err.message)
   }
 
+  async function deleteRow(id: string) {
+    if (!supabase) return
+    if (!confirm('Delete this enquiry? This cannot be undone.')) return
+    setMenuFor(null)
+    setRows((rs) => rs.filter((r) => r.id !== id))
+    const { error: err } = await supabase.from('project_inquiries').delete().eq('id', id)
+    if (err) setError(err.message)
+  }
+
   const visible = useMemo(() => {
     return rows.filter((r) => {
       if (filter !== 'all' && r.status !== filter) return false
@@ -74,6 +89,21 @@ export default function Enquiries() {
       )
     })
   }, [rows, filter, search])
+
+  const allSelected = visible.length > 0 && visible.every((r) => selected.has(r.id))
+
+  function toggleAll() {
+    setSelected(allSelected ? new Set() : new Set(visible.map((r) => r.id)))
+  }
+
+  function toggleOne(id: string) {
+    setSelected((s) => {
+      const next = new Set(s)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
+      return next
+    })
+  }
 
   return (
     <div className="admin-page">
@@ -111,31 +141,44 @@ export default function Enquiries() {
           <table className="admin-table">
             <thead>
               <tr>
+                <th className="admin-th-check">
+                  <input type="checkbox" checked={allSelected} onChange={toggleAll} />
+                </th>
+                <th>#</th>
                 <th>Name</th>
-                <th>Service</th>
-                <th>Contact</th>
-                <th>Message</th>
-                <th>Date</th>
+                <th>Service / Package</th>
+                <th>Date &amp; Time</th>
                 <th>Status</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
               {visible.map((r) => (
-                <tr key={r.id}>
-                  <td>{r.full_name}</td>
+                <tr key={r.id} className={selected.has(r.id) ? 'is-selected' : ''}>
+                  <td className="admin-th-check">
+                    <input type="checkbox" checked={selected.has(r.id)} onChange={() => toggleOne(r.id)} />
+                  </td>
+                  <td className="admin-mono">{shortId(r.id)}</td>
+                  <td>
+                    <b>{r.full_name}</b>
+                    <div className="admin-sub">{r.phone}</div>
+                  </td>
                   <td>
                     {r.service}
-                    {r.budget && <div className="admin-sub">{r.budget}</div>}
+                    <div className="admin-sub">{r.message || 'No message provided'}</div>
                   </td>
                   <td>
-                    <div>{r.phone}</div>
-                    {r.email && <div className="admin-sub">{r.email}</div>}
+                    {new Date(r.created_at).toLocaleDateString(undefined, { day: '2-digit', month: 'short', year: 'numeric' })}
+                    <div className="admin-sub">
+                      {new Date(r.created_at).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}
+                    </div>
                   </td>
-                  <td className="admin-message">{r.message || 'No message provided'}</td>
-                  <td>{new Date(r.created_at).toLocaleString()}</td>
                   <td>
-                    <select value={r.status} onChange={(e) => setStatus(r.id, e.target.value as Inquiry['status'])}>
+                    <select
+                      className={`admin-status-pill admin-status-${r.status}`}
+                      value={r.status}
+                      onChange={(e) => setStatus(r.id, e.target.value as Inquiry['status'])}
+                    >
                       {statuses
                         .filter((s) => s.value !== 'all')
                         .map((s) => (
@@ -146,9 +189,28 @@ export default function Enquiries() {
                     </select>
                   </td>
                   <td>
-                    <a className="admin-btn" href={waLink(r.phone)} target="_blank" rel="noopener">
-                      WhatsApp
-                    </a>
+                    <div className="admin-row-actions">
+                      <a className="admin-btn admin-btn-wa" href={waLink(r.phone)} target="_blank" rel="noopener">
+                        WhatsApp
+                      </a>
+                      <div className="admin-kebab-wrap">
+                        <button
+                          type="button"
+                          className="admin-kebab"
+                          aria-label="More actions"
+                          onClick={() => setMenuFor(menuFor === r.id ? null : r.id)}
+                        >
+                          ⋮
+                        </button>
+                        {menuFor === r.id && (
+                          <div className="admin-kebab-menu">
+                            <button type="button" onClick={() => deleteRow(r.id)}>
+                              Delete
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    </div>
                   </td>
                 </tr>
               ))}

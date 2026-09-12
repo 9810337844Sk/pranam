@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import { deleteRow, insertRow, listRows, updateRow, type Row } from './api'
+import { ImageField } from './ImageField'
+import { RichTextEditor } from './RichTextEditor'
 
 export type FieldConfig = {
   key: string
   label: string
-  type?: 'text' | 'textarea' | 'boolean' | 'tags'
+  type?: 'text' | 'textarea' | 'boolean' | 'tags' | 'image' | 'html'
   placeholder?: string
 }
 
@@ -48,6 +50,21 @@ function Fields({
   return (
     <div className="admin-fields">
       {fields.map((f) => (
+        f.type === 'image' ? (
+          <ImageField
+            key={f.key}
+            label={f.label}
+            value={String(values[f.key] ?? '')}
+            onChange={(url) => onChange(f.key, url)}
+          />
+        ) : f.type === 'html' ? (
+          <RichTextEditor
+            key={f.key}
+            label={f.label}
+            value={String(values[f.key] ?? '')}
+            onChange={(html) => onChange(f.key, html)}
+          />
+        ) : (
         <label key={f.key} className="admin-field">
           <span>{f.label}</span>
           {f.type === 'boolean' ? (
@@ -72,6 +89,7 @@ function Fields({
             />
           )}
         </label>
+        )
       ))}
     </div>
   )
@@ -94,6 +112,7 @@ export function CollectionEditor({
   const [editingId, setEditingId] = useState<string | null>(null)
   const [editValues, setEditValues] = useState<FormValues>({})
   const [newValues, setNewValues] = useState<FormValues>(toFormValues(fields))
+  const [newFormKey, setNewFormKey] = useState(0)
   const [busy, setBusy] = useState(false)
 
   async function refresh() {
@@ -120,6 +139,7 @@ export function CollectionEditor({
       const payload = toPayload(fields, newValues)
       await insertRow(table, { ...payload, sort_order: rows.length })
       setNewValues(toFormValues(fields))
+      setNewFormKey((k) => k + 1)
       await refresh()
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Failed to add.')
@@ -177,6 +197,23 @@ export function CollectionEditor({
     }
   }
 
+  async function pinToPosition(row: Row, targetIdx: number) {
+    const from = rows.findIndex((r) => r.id === row.id)
+    if (from === -1 || from === targetIdx) return
+    const reordered = [...rows]
+    reordered.splice(from, 1)
+    reordered.splice(targetIdx, 0, row)
+    setBusy(true)
+    try {
+      await Promise.all(reordered.map((r, i) => updateRow(table, r.id, { sort_order: i })))
+      await refresh()
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Failed to reorder.')
+    } finally {
+      setBusy(false)
+    }
+  }
+
   return (
     <div className="admin-page">
       <h1>{title}</h1>
@@ -184,7 +221,12 @@ export function CollectionEditor({
 
       <section className="admin-card">
         <h2>Add new</h2>
-        <Fields fields={fields} values={newValues} onChange={(k, v) => setNewValues((s) => ({ ...s, [k]: v }))} />
+        <Fields
+          key={newFormKey}
+          fields={fields}
+          values={newValues}
+          onChange={(k, v) => setNewValues((s) => ({ ...s, [k]: v }))}
+        />
         <button type="button" className="admin-btn primary" disabled={busy} onClick={handleAdd}>
           Add
         </button>
@@ -216,8 +258,23 @@ export function CollectionEditor({
                 </>
               ) : (
                 <div className="admin-row">
-                  <span className="admin-row-title">{itemLabel(row)}</span>
+                  <div className="admin-row-title-wrap">
+                    <span className="admin-rank-badge">#{idx + 1}</span>
+                    <span className="admin-row-title">{itemLabel(row)}</span>
+                  </div>
                   <div className="admin-row-actions">
+                    {[0, 1, 2].map((pos) => (
+                      <button
+                        key={pos}
+                        type="button"
+                        className="admin-btn"
+                        disabled={busy || idx === pos}
+                        title={`Pin to position ${pos + 1}`}
+                        onClick={() => pinToPosition(row, pos)}
+                      >
+                        Pin #{pos + 1}
+                      </button>
+                    ))}
                     <button type="button" className="admin-btn" disabled={busy || idx === 0} onClick={() => move(row, -1)}>
                       ↑
                     </button>
