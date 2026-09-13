@@ -1,4 +1,4 @@
-import { ServicesSection } from '../components/ServicesSection'
+import { ServiceCards } from '../components/ServiceCards'
 import { PricingSection } from '../components/PricingSection'
 import { PageHero } from '../components/PageHero'
 import { Seo } from '../components/Seo'
@@ -12,7 +12,7 @@ export default function Services() {
         path="/services"
       />
       <PageHero title="Our Services" />
-      <ServicesSection withHead={false} />
+      <ServiceCards />
       <PricingSection />
     </>
   )

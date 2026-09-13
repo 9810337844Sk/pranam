@@ -1,5 +1,11 @@
 import { certifications, features, officeImage } from '~/data/site'
-import { featureIcons, ShieldPlain } from './Icons'
+import { featureIcons, GoogleG, MetaIcon, SeoIcon, ShieldPlain } from './Icons'
+
+const certIcons: Record<string, typeof ShieldPlain> = {
+  'Google Analytics Certified': GoogleG,
+  'Meta Ads Certified': MetaIcon,
+  'SEO Specialist Certified': SeoIcon,
+}
 import { SectionHead } from './PageHero'
 import { Ph } from './Ph'
 
@@ -53,11 +59,14 @@ export function AboutSection({ withHead = true }: { withHead?: boolean }) {
         </div>
 
         <div className="certs">
-          {certifications.map((c) => (
-            <span className="cert" key={c}>
-              <ShieldPlain /> {c}
-            </span>
-          ))}
+          {certifications.map((c) => {
+            const Icon = certIcons[c] || ShieldPlain
+            return (
+              <span className="cert" key={c}>
+                <Icon /> {c}
+              </span>
+            )
+          })}
         </div>
       </div>
     </section>

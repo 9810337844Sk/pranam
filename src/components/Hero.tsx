@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react'
 import { heroImage } from '~/data/site'
 import { useLiveContent } from '~/lib/content'
 import { ButtonLink } from './ui/button'
-import { Ph } from './Ph'
-import { ArrowRight, Squiggle, Sun } from './Icons'
+import { Squiggle, Sun } from './Icons'
 
 const stats = [
   { title: 'Strategy-led', body: 'For real business needs' },
@@ -52,7 +51,14 @@ export function Hero() {
       </svg>
 
       <div className="hero2-photo">
-        <Ph ini="PS" className="hero2-img" src={slide?.image ?? heroImage} alt={slide?.title ?? 'Pranam Software'} eager />
+        <div className="hero2-img">
+          <img 
+            src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=90" 
+            alt={slide?.title ?? 'Pranam Software'}
+            loading="eager"
+            decoding="async"
+          />
+        </div>
         <div className="hero2-shade" />
         <p className="hero2-tagline">
           <span>Build.</span>
@@ -86,7 +92,6 @@ export function Hero() {
           <div className="hero2-stats">
             {stats.map((s) => (
               <div className="hero2-stat" key={s.title}>
-                <ArrowRight />
                 <div>
                   <b>{s.title}</b>
                   <span>{s.body}</span>

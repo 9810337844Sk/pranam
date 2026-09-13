@@ -180,6 +180,19 @@ export const GoogleG = (p: P) => (
   </svg>
 )
 
+export const MetaIcon = (p: P) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" {...p}>
+    <path d="M6.5 3.5c-2.9 0-5 3.2-5 8.5s2.1 8.5 5 8.5c2 0 3.3-1.4 5.5-5 2.2 3.6 3.5 5 5.5 5 2.9 0 5-3.2 5-8.5s-2.1-8.5-5-8.5c-1.9 0-3.3 1.3-5 4.2-1.7-2.9-3.1-4.2-5-4.2zm0 2.6c1 0 1.9.9 3.5 3.6-1.8 3-2.7 4.3-3.5 4.3-1.2 0-2-1.8-2-5.4v-.1c0-1.8.4-2.4.9-2.4h1.1zm11 0h1.1c.5 0 .9.6.9 2.4v.1c0 3.6-.8 5.4-2 5.4-.8 0-1.7-1.3-3.5-4.3 1.6-2.7 2.5-3.6 3.5-3.6z" />
+  </svg>
+)
+
+export const SeoIcon = (p: P) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <circle cx="10.5" cy="10.5" r="6.5" />
+    <path d="m21 21-5.5-5.5" />
+  </svg>
+)
+
 export const Send = (p: P) => (
   <svg viewBox="0 0 24 24" fill="currentColor" {...p}>
     <path d="M3 11.5 21 3l-6.5 18-3.2-7.3z" />

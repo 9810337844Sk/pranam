@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import { brands, officeImage, products } from '~/data/site'
-import { ArrowRight } from './Icons'
 import { Ph } from './Ph'
 
 export function MarketProducts() {
@@ -40,7 +39,7 @@ export function MarketProducts() {
           </div>
 
           <Link to="/products" className="mktp-cta">
-            <ArrowRight /> See All Products
+            See All Products
           </Link>
         </div>
       </div>

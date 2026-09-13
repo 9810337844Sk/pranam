@@ -28,7 +28,7 @@ export default function Blog() {
         .from('blog_posts')
         .select('id,title,slug,excerpt,cover_image,created_at')
         .eq('published', true)
-        .order('sort_order', { ascending: true })
+        .order('published_at', { ascending: false })
       setPosts((data ?? []) as Post[])
       setLoading(false)
     }

@@ -1,5 +1,4 @@
 import { ButtonLink } from './ui/button'
-import { ArrowRight } from './Icons'
 
 export function HireCta() {
   return (
@@ -11,7 +10,7 @@ export function HireCta() {
             <p>Hire our verified team securely for website, app, and custom software development.</p>
           </div>
           <ButtonLink to="/contact" variant="yellow">
-            Hire Us on Freelancer <ArrowRight width={15} height={15} />
+            Hire Us on Freelancer
           </ButtonLink>
         </div>
       </div>

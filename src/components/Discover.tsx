@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom'
-import { videoImage } from '~/data/site'
-import { Ph } from './Ph'
 import { ButtonLink } from './ui/button'
-import { Check, Play } from './Icons'
+import { Check } from './Icons'
 
 const points = [
   'Modern Web & App Development',
@@ -14,11 +12,18 @@ export function Discover() {
   return (
     <section className="discover">
       <div className="wrap disc-grid">
-        <Ph ini="PS" className="video-shell" src={videoImage} alt="Pranam Software team collaborating">
-          <Link className="play-big" to="/contact" aria-label="Watch our company introduction">
-            <Play />
-          </Link>
-        </Ph>
+        {/* Video Player */}
+        <div className="video-shell">
+          <iframe 
+            className="video-iframe"
+            src="https://www.youtube.com/embed/k3yWQ91TzTU?si=E3MQmzXBwrlSVX8K" 
+            title="Company Introduction Video - Pranam Software" 
+            frameBorder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowFullScreen
+            loading="lazy"
+          />
+        </div>
 
         <div>
           <p className="eyebrow">Company Introduction</p>

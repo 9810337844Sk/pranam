@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { packages } from '~/data/site'
-import { ArrowRight, Check } from './Icons'
+import { Check } from './Icons'
 import { SectionHead } from './PageHero'
 
 export function PricingSection({ withHead = true }: { withHead?: boolean }) {
@@ -32,7 +32,7 @@ export function PricingSection({ withHead = true }: { withHead?: boolean }) {
                 ))}
               </ul>
               <Link to="/contact" className="pkg-cta">
-                Get Started <ArrowRight width={15} height={15} />
+                Get Started
               </Link>
             </article>
           ))}

@@ -28,12 +28,10 @@ export function BookingModal({
     setState({ status: 'sending' })
     try {
       await submitInquiry({
-        data: {
-          full_name: String(fd.get('full_name') ?? ''),
-          phone: String(fd.get('phone') ?? ''),
-          service: String(fd.get('service') ?? ''),
-          message: eventDate ? `Preferred date: ${eventDate}` : 'Booking enquiry',
-        },
+        full_name: String(fd.get('full_name') ?? ''),
+        phone: String(fd.get('phone') ?? ''),
+        service: String(fd.get('service') ?? ''),
+        message: eventDate ? `Booking Request - Preferred date: ${eventDate}` : 'Booking enquiry',
       })
       form.reset()
       setState({ status: 'sent', message: "Thanks — we'll confirm your slot within 24 hours." })

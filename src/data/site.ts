@@ -52,6 +52,7 @@ export const nav = [
   { to: '/services', label: 'Services' },
   { to: '/products', label: 'Product' },
   { to: '/team', label: 'Team' },
+  { to: '/blog', label: 'Blog' },
   { to: '/contact', label: 'Contact' },
 ] as const
 
@@ -70,7 +71,7 @@ export const services: Service[] = [
     body: 'Fast, secure & responsive websites that convert visitors into customers.',
     icon: 'web',
     color: 'violet',
-    image: '/services/website.png',
+    image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="700" height="400"%3E%3Crect fill="%23F3E5F5" width="700" height="400"/%3E%3C/svg%3E',
     features: [
       'Business Websites',
       'E-commerce Stores',
@@ -84,7 +85,7 @@ export const services: Service[] = [
     body: 'Cloud-based system for admissions, grades, fees & parent communication.',
     icon: 'school',
     color: 'pink',
-    image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=700&q=80',
+    image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="700" height="400"%3E%3Crect fill="%23FCE4EC" width="700" height="400"/%3E%3C/svg%3E',
     features: [
       'Admission Management',
       'Fee & Billing System',
@@ -98,7 +99,7 @@ export const services: Service[] = [
     body: 'Billing, inventory, POS & loyalty programs designed for retail growth.',
     icon: 'shop',
     color: 'orange',
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=700&q=80',
+    image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="700" height="400"%3E%3Crect fill="%23FFE0B2" width="700" height="400"/%3E%3C/svg%3E',
     features: [
       'POS Billing System',
       'Inventory Management',
@@ -108,17 +109,17 @@ export const services: Service[] = [
     ],
   },
   {
-    title: 'Digital Menu & Restaurant Solutions',
-    body: 'Online ordering, digital menus & table management for restaurants.',
-    icon: 'menu',
+    title: 'Educational App Development',
+    body: 'Interactive learning apps for students with engaging features and progress tracking.',
+    icon: 'training',
     color: 'blue',
-    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=700&q=80',
+    image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="700" height="400"%3E%3Crect fill="%23E3F2FD" width="700" height="400"/%3E%3C/svg%3E',
     features: [
-      'QR Digital Menus',
-      'Online Ordering',
-      'Table Reservation',
-      'Order Management',
-      'Customer Feedback',
+      'Interactive Learning',
+      'Progress Tracking',
+      'Quiz & Tests',
+      'Student Analytics',
+      'Teacher Dashboard',
     ],
   },
   {
@@ -126,7 +127,7 @@ export const services: Service[] = [
     body: 'Web, mobile & software engineering — hands-on training for job-ready professionals.',
     icon: 'training',
     color: 'teal',
-    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=700&q=80',
+    image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="700" height="400"%3E%3Crect fill="%23E0F2F1" width="700" height="400"/%3E%3C/svg%3E',
     features: [
       'Web Development Training',
       'Mobile App Training',
@@ -148,7 +149,7 @@ export const serviceOptions = [
   'Website Design & Development',
   'School Management Portal',
   'Shop Customized Software',
-  'Digital Menu & Restaurant Solutions',
+  'Educational App Development',
   'Mobile App Development',
   'IT Training & Internship Program',
 ]
@@ -242,7 +243,6 @@ export type Brand = { name: string; logo: string }
 export const brands: Brand[] = [
   { name: 'Spotify', logo: 'https://api.myunicampus.com/6da490c2-415b-4732-9b44-b41fc1a2565b_1744952092980.png' },
   { name: 'Meta', logo: 'https://blog.logomyway.com/wp-content/uploads/2021/11/meta-logo.png' },
-  { name: 'IT College Nepal', logo: 'https://itcollegenepal.com/wp-content/uploads/2021/08/download-1.png.webp' },
   { name: 'Bhojmandu', logo: 'https://bhojmandu.com/storage/business/2026-07-04-6a48ab9ea4675.png' },
   { name: 'Kantipur Studio', logo: 'https://kantipurstudio.com.np/final-logo.webp' },
   { name: 'Digital Kantipur', logo: 'https://www.digitalkantipur.com/logo%20image/logo%20ho%20digital%20kantipur(1).png' },
@@ -281,58 +281,7 @@ export type Product = {
   wide?: boolean
 }
 
-export const products: Product[] = [
-  {
-    name: 'Kantipur Studio',
-    ini: 'KS',
-    body: 'A modern, responsive studio website designed for a strong online presence.',
-    tags: ['Website'],
-    img: 'https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    name: 'RBS Academy Mobile App',
-    ini: 'RBS',
-    body: 'A convenient learning app for students, available on Google Play.',
-    tags: ['Mobile App', 'Android'],
-    img: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    name: 'Battery Mandu',
-    ini: 'BM',
-    body: 'A responsive battery products and services website built for customers in Nepal.',
-    tags: ['Website', 'Responsive Design'],
-    img: 'https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    name: 'Digital Kantipur',
-    ini: 'DK',
-    body: 'A modern digital platform with a fast, accessible and mobile-friendly experience.',
-    tags: ['Website', 'Web Development'],
-    img: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    name: 'Dukan Ko Hero',
-    ini: 'DH',
-    body: 'Business management platform for local shops with billing & inventory.',
-    tags: ['Inventory Management Software'],
-    img: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    name: 'Annex Consultancy',
-    ini: 'AC',
-    body: 'Educational consultancy system for admissions, leads & documentation.',
-    tags: ['Website', 'SEO', 'Page Optimization'],
-    img: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    name: 'Gyan Verse',
-    ini: 'GV',
-    body: 'Immersive 360° 3D video production for education and brand storytelling — filmed, stitched and delivered for web and headset playback.',
-    tags: ['360 3D Video'],
-    img: 'https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?auto=format&fit=crop&w=800&q=80',
-    wide: true,
-  },
-]
+export const products: Product[] = []
 
 export type Member = {
   name: string
@@ -348,42 +297,42 @@ export const team: Member[] = [
     ini: 'SK',
     role: 'ceo & founder',
     skills: 'Strategic visionary | Enterprise Solutions | Business Growth',
-    img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
+    img: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjuWNCQYejuWjdWzJNQf6yhj2k3GcN1n1sXl-Lp5TuU6XcFY-v5zzUqr-EQMQHo3bT7B4jHr9NwKAuR19DlJvJqXRAsLdCBMKBJtjE2fY_ChAXQJpNk7pEgOIprF7Bf2cLXUnFyB9lM0r37hNtOPXONDhALX0UBf_wbffjPnihMGnYatZsoqyCLYowog2c/s1600/sachin.png',
   },
   {
     name: 'Anurag Thakur',
     ini: 'AT',
     role: 'senior developer',
     skills: 'Full-Stack Expert | Cloud Architecture | Scalable Systems',
-    img: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80',
+    img: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi5tyzIzZU83GDRVCKOtlE4GnApSC6r9my4eH7v8vvc5E-oLX0CveT-TZjSGZQhtHC52kty1LLVV77DJSmMKXhUPbjsq3RdqV0aOWffpgdE0exj_F2CBxLXH_29SSdLl0aJfPHuQlZKEBPRu7NPZ1jf98DRU8shusI-PY24UDSPQ0_vrU-vyRj6YM5-9VI/s1600/anurag.jpeg',
   },
   {
     name: 'Harshit Chaudhary',
     ini: 'HC',
     role: 'lead developer',
     skills: 'Modern Frameworks | Responsive Design | Problem Solver',
-    img: 'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&w=400&q=80',
+    img: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiQOp9geRo50M64pv3W99UEmWHff1oYChX07_ic2p_4qfkuuDmdBKldnS6OQlknKP5WXeJhAQYlzi-mTdan31iJ9RPGG26zTov0gkieB_onJ8SninB6iLTOwqh1V1bR0GXebKgRJv63cIb8wOShyphenhyphen3-BjZ9meUf3eilx8iduosSWXWJxdAGb6Ejp1Jx2cOc/s1600/WhatsApp%20Image%202026-09-03%20at%201.33.28%20PM.jpeg',
   },
   {
     name: 'Kashish Shrestha',
     ini: 'KS',
     role: 'devops engineer',
     skills: 'Cloud Infrastructure | CI/CD Automation | Reliable Deployments',
-    img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80',
+    img: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg4i99RueNnrxSjnb5l2eBR_N_PWItABYcJdCWNE1gfYmQsXrGXrZXISGSic0aGrA2Rk31HSFwZLK3xRgy6l1xvj8eUL9DR-dU8_VYgro6u5FQEY0Fte5FRFRCXkwB_lA3CLizNVpwvAYH8KztxhqvQNemvJI6dR45l_7M5gHNryh5Etbn4IDZ9q_pCCE8/s600/cf30a90f-1270-48e7-8c8d-c769fd1eb876%20%281%29.jpg',
   },
   {
     name: 'Garima Chaudhary',
     ini: 'GC',
     role: 'digital marketer',
     skills: 'Digital Marketing | Content Strategy | Campaign Expert',
-    img: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80',
+    img: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhx1QqndiFeqEhSYumldpnPhKLULEFXGCZOhUvlzUx4ymrc5C_UBhmE4WdtJIRS2sZjDWEKTmRkVIiita9wtxoDUJ-ORC5h3l_NwR3HZYvCXyzTP2pT4to-7zi_FXjBQvjSIjtQb9G2J0TQXTn3T3coJpeaBEZZJNiJTKzunUyyZdJn7iuwp9LaE4sycQ/s1600/IMG-20260105-WA0006gdhdhdd-removebg-preview.png',
   },
   {
     name: 'Arbindra Kharel',
     ini: 'AK',
     role: 'content generation',
     skills: 'DevOps | Brand Storytelling | AWS Engineer',
-    img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80',
+    img: 'https://www.arbindrakharel.com.np/images/profile-1.jpeg',
   },
 ]
 
@@ -447,7 +396,7 @@ export const testimonials: Testimonial[] = [
 ]
 
 export const heroImage =
-  'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=80'
+  'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=90'
 export const videoImage =
   'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80'
 export const officeImage =

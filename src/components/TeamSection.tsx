@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { team as defaultTeam, type Member } from '~/data/site'
 import { useLiveContent } from '~/lib/content'
-import { Facebook, Instagram, XIcon } from './Icons'
 import { Ph } from './Ph'
 
 function useInView<T extends HTMLElement>() {
@@ -38,20 +37,12 @@ function TeamCard({ member, index }: { member: Member; index: number }) {
     >
       <div className="member-avatar-wrap">
         <Ph ini={member.ini} className="avatar" src={member.img} alt={member.name} />
+        <div className="member-badge">
+          <h4>{member.name}</h4>
+          <p className="role">{member.role}</p>
+        </div>
       </div>
-      <p className="role">{member.role}</p>
-      <h4>{member.name}</h4>
-      <div className="mini-soc">
-        <a href="/contact" aria-label={`${member.name} on Facebook`}>
-          <Facebook />
-        </a>
-        <a href="/contact" aria-label={`${member.name} on Instagram`}>
-          <Instagram />
-        </a>
-        <a href="/contact" aria-label={`${member.name} on X`}>
-          <XIcon />
-        </a>
-      </div>
+      <p className="member-skills">{member.skills}</p>
     </div>
   )
 }

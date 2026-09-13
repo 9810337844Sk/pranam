@@ -12,44 +12,55 @@ export function useLiveContent<T>(table: string, fallback: T[], orderCol = 'sort
 
   useEffect(() => {
     let cancelled = false
+    
+    // Always start with fallback to ensure the site works
+    if (!fallback || fallback.length === 0) {
+      console.warn(`⚠️ No fallback data provided for ${table}`)
+      return
+    }
+
     if (!supabase) {
       console.info(`📋 Using fallback data for ${table} (Supabase not configured)`)
       return
     }
 
-    supabase
-      .from(table)
-      .select('*')
-      .order(orderCol, { ascending: true })
-      .then(({ data, error }) => {
+    // Wrap everything in try-catch to prevent any errors from breaking the site
+    const loadData = async () => {
+      try {
+        const { data, error } = await supabase
+          .from(table)
+          .select('*')
+          .order(orderCol, { ascending: true })
+
         if (cancelled) return
         
         if (error) {
-          // Check if it's a missing table error (404)
-          if (error.message?.includes('relation') && error.message?.includes('does not exist')) {
-            console.info(`📋 Table "${table}" doesn't exist yet, using fallback data. Run setup-database.sql to create it.`)
-          } else {
-            console.warn(`⚠️ Error fetching ${table}:`, error.message)
-          }
-          return // Use fallback data
+          // Log error but don't break the site
+          console.info(`📋 Using fallback data for ${table} due to error:`, error.message)
+          return // Keep using fallback data
         }
         
         if (!data || data.length === 0) {
           console.info(`📋 Table "${table}" is empty, using fallback data`)
-          return // Use fallback data
+          return // Keep using fallback data
         }
         
         console.info(`✅ Loaded ${data.length} items from ${table}`)
         setRows(data as T[])
-      })
-      .catch((error) => {
+      } catch (error: any) {
         if (!cancelled) {
-          console.info(`📋 Using fallback data for ${table} due to error:`, error.message)
+          console.info(`📋 Using fallback data for ${table} due to exception:`, error.message)
         }
-      })
+        // Keep using fallback data - don't update state on error
+      }
+    }
+
+    // Add a small delay to prevent blocking the initial render
+    const timer = setTimeout(loadData, 100)
 
     return () => {
       cancelled = true
+      clearTimeout(timer)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [table])
@@ -67,44 +78,55 @@ export function useLiveSingleton<T>(
 
   useEffect(() => {
     let cancelled = false
+    
+    // Always start with fallback to ensure the site works
+    if (!fallback) {
+      console.warn(`⚠️ No fallback data provided for ${table}`)
+      return
+    }
+
     if (!supabase) {
       console.info(`📋 Using fallback data for ${table} (Supabase not configured)`)
       return
     }
 
-    supabase
-      .from(table)
-      .select('*')
-      .limit(1)
-      .maybeSingle()
-      .then(({ data, error }) => {
+    // Wrap everything in try-catch to prevent any errors from breaking the site
+    const loadData = async () => {
+      try {
+        const { data, error } = await supabase
+          .from(table)
+          .select('*')
+          .limit(1)
+          .maybeSingle()
+
         if (cancelled) return
         
         if (error) {
-          if (error.message?.includes('relation') && error.message?.includes('does not exist')) {
-            console.info(`📋 Table "${table}" doesn't exist yet, using fallback data. Run setup-database.sql to create it.`)
-          } else {
-            console.warn(`⚠️ Error fetching ${table}:`, error.message)
-          }
-          return // Use fallback data
+          console.info(`📋 Using fallback data for ${table} due to error:`, error.message)
+          return // Keep using fallback data
         }
         
         if (!data) {
           console.info(`📋 No data in ${table}, using fallback`)
-          return // Use fallback data
+          return // Keep using fallback data
         }
         
         console.info(`✅ Loaded singleton data from ${table}`)
         setRow(map(data))
-      })
-      .catch((error) => {
+      } catch (error: any) {
         if (!cancelled) {
-          console.info(`📋 Using fallback data for ${table} due to error:`, error.message)
+          console.info(`📋 Using fallback data for ${table} due to exception:`, error.message)
         }
-      })
+        // Keep using fallback data - don't update state on error
+      }
+    }
+
+    // Add a small delay to prevent blocking the initial render
+    const timer = setTimeout(loadData, 150)
 
     return () => {
       cancelled = true
+      clearTimeout(timer)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [table])

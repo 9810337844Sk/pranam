@@ -39,7 +39,7 @@ export function Footer() {
         <div className="ftr-top-section">
           <div className="ftr-brand-section">
             <Link to="/" className="ftr-brand-logo-only">
-              <img src="/logo/logo.png" alt={company.name} className="ftr-logo-large" />
+              <img src="/logo.png" alt={company.name} className="ftr-logo-large" />
             </Link>
             <p className="ftr-description">
               We build fast, secure & responsive websites, mobile apps, and custom software that help businesses grow and succeed in the digital world.

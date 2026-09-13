@@ -1,15 +1,28 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { products as defaultProducts, type Product } from '~/data/site'
-import { useLiveContent } from '~/lib/content'
-import { ArrowRight } from './Icons'
+import { supabase } from '~/lib/supabase'
 import { Ph } from './Ph'
+
+interface Product {
+  id: string
+  name: string
+  slug: string
+  description: string
+  image_url: string
+  category: string
+  client_name: string
+  project_url?: string
+  technologies_used?: string[]
+  active: boolean
+  featured: boolean
+  sort_order: number
+}
 
 const categories = ['All', 'Website', 'Mobile App', 'Software', '3D Video']
 
-function matchesCategory(tags: string[], category: string) {
+function matchesCategory(category: string, productCategory: string) {
   if (category === 'All') return true
-  return tags.some((t) => t.toLowerCase().includes(category.toLowerCase()))
+  return productCategory.toLowerCase().includes(category.toLowerCase())
 }
 
 export function ProductsSection({
@@ -19,13 +32,61 @@ export function ProductsSection({
   withHead?: boolean
   limit?: number
 }) {
+  const [allProducts, setAllProducts] = useState<Product[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const [category, setCategory] = useState('All')
-  const products = useLiveContent<Product>('products', defaultProducts)
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true)
+        const { data, error: err } = await supabase
+          .from('products')
+          .select('*')
+          .eq('active', true)
+          .order('sort_order', { ascending: true })
+
+        if (err) {
+          console.error('Error fetching products:', err)
+          setError(err.message)
+          setAllProducts([])
+        } else {
+          setAllProducts(data || [])
+        }
+      } catch (err) {
+        console.error('Error:', err)
+        setError('Failed to load products')
+        setAllProducts([])
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchProducts()
+  }, [])
 
   const list = useMemo(() => {
-    const base = limit ? products.filter((p) => !p.wide).slice(0, limit) : products
-    return limit ? base : base.filter((p) => matchesCategory(p.tags, category))
-  }, [category, limit, products])
+    let filtered = allProducts.filter((p) => matchesCategory(category, p.category))
+    if (limit) {
+      filtered = filtered.slice(0, limit)
+    }
+    return filtered
+  }, [category, limit, allProducts])
+
+  if (loading) {
+    return (
+      <section id="products">
+        <div className="wrap">
+          <div style={{ textAlign: 'center', padding: '40px' }}>Loading...</div>
+        </div>
+      </section>
+    )
+  }
+
+  if (error || allProducts.length === 0) {
+    return null
+  }
 
   return (
     <section id="products">
@@ -58,21 +119,23 @@ export function ProductsSection({
 
         <div className="prod-grid">
           {list.map((p) => (
-            <article className={`prod${p.wide ? ' wide' : ''}`} key={p.name}>
-              <Ph ini={p.ini} className="shot" src={p.img} alt={p.name} />
+            <article className="prod" key={p.id}>
+              <Ph ini={p.name.substring(0, 2).toUpperCase()} className="shot" src={p.image_url} alt={p.name} />
               <div className="prod-body">
                 <h3>{p.name}</h3>
-                <p>{p.body}</p>
+                <p>{p.description}</p>
                 <div className="tags">
-                  {p.tags.map((t) => (
-                    <span className="tag" key={t}>
-                      {t}
-                    </span>
-                  ))}
+                  <span className="tag">{p.category}</span>
                 </div>
-                <Link to="/contact">
-                  View Product <ArrowRight />
-                </Link>
+                {p.project_url ? (
+                  <a href={p.project_url} target="_blank" rel="noopener noreferrer">
+                    View Product
+                  </a>
+                ) : (
+                  <Link to="/contact">
+                    View Product
+                  </Link>
+                )}
               </div>
             </article>
           ))}

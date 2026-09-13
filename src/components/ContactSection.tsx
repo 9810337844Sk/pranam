@@ -4,7 +4,7 @@ import { budgetOptions, company as defaultCompany, mapCompanyRow, serviceOptions
 import { useLiveSingleton } from '~/lib/content'
 import { submitInquiry } from '~/server/inquiries'
 import { trackMetaPixelEvent } from '~/lib/metaPixel'
-import { ArrowRight, Clock, Lock, Mail, Phone, Pin, WhatsApp } from './Icons'
+import { Lock, Mail, Phone, Pin, WhatsApp } from './Icons'
 import { SectionHead } from './PageHero'
 import { Button } from './ui/button'
 import { Field, Select } from './ui/field'
@@ -28,15 +28,13 @@ export function ContactSection({ withHead = true }: { withHead?: boolean }) {
     setState({ status: 'sending' })
     try {
       await submitInquiry({
-        data: {
-          full_name: String(fd.get('full_name') ?? ''),
-          email: String(fd.get('email') ?? ''),
-          phone: String(fd.get('phone') ?? ''),
-          company: String(fd.get('company') ?? ''),
-          service: String(fd.get('service') ?? ''),
-          budget: String(fd.get('budget') ?? ''),
-          message: String(fd.get('message') ?? ''),
-        },
+        full_name: String(fd.get('full_name') ?? ''),
+        email: String(fd.get('email') ?? ''),
+        phone: String(fd.get('phone') ?? ''),
+        company: String(fd.get('company') ?? ''),
+        service: String(fd.get('service') ?? ''),
+        budget: String(fd.get('budget') ?? ''),
+        message: String(fd.get('message') ?? ''),
       })
       form.reset()
       trackMetaPixelEvent('Lead')
@@ -127,7 +125,7 @@ export function ContactSection({ withHead = true }: { withHead?: boolean }) {
               </label>
 
               <Button variant="blue" type="submit" disabled={sending}>
-                {sending ? 'Sending…' : 'Send Project Inquiry'} <ArrowRight width={15} height={15} />
+                {sending ? 'Sending…' : 'Send Project Inquiry'}
               </Button>
 
               {state.message && (
@@ -175,16 +173,6 @@ export function ContactSection({ withHead = true }: { withHead?: boolean }) {
                 <a className="hot" href={`mailto:${company.email}`}>
                   {company.email}
                 </a>
-              </div>
-            </div>
-
-            <div className="info">
-              <div className="info-ico">
-                <Clock />
-              </div>
-              <div>
-                <b>Hours</b>
-                <span>{company.hours}</span>
               </div>
             </div>
 

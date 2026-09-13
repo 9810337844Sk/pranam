@@ -3,7 +3,7 @@ import { Nav } from './components/Nav'
 import { Footer } from './components/Footer'
 import { Marquee } from './components/Marquee'
 import { AnalyticsTracker } from './components/AnalyticsTracker'
-import { DatabaseStatus } from './components/DatabaseStatus'
+import { ErrorBoundary } from './components/ErrorBoundary'
 
 // Import page components
 import Home from './pages/Home'
@@ -36,23 +36,36 @@ import AdminImportContent from './admin/ImportContent'
 function SiteChrome() {
   return (
     <>
-      <DatabaseStatus />
-      <AnalyticsTracker />
-      <Marquee />
-      <Nav />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/services/:slug" element={<ServiceDetail />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/process" element={<Process />} />
-        <Route path="/team" element={<Team />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/:slug" element={<BlogPost />} />
-      </Routes>
-      <Footer />
+      <ErrorBoundary>
+        <AnalyticsTracker />
+      </ErrorBoundary>
+      
+      <ErrorBoundary>
+        <Marquee />
+      </ErrorBoundary>
+      
+      <ErrorBoundary>
+        <Nav />
+      </ErrorBoundary>
+      
+      <ErrorBoundary>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/services/:slug" element={<ServiceDetail />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/process" element={<Process />} />
+          <Route path="/team" element={<Team />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
+        </Routes>
+      </ErrorBoundary>
+      
+      <ErrorBoundary>
+        <Footer />
+      </ErrorBoundary>
       
       {/* Simple WhatsApp floating button */}
       <a
@@ -73,26 +86,28 @@ function SiteChrome() {
 
 function App() {
   return (
-    <Routes>
-      <Route path="/admin/login" element={<AdminLogin />} />
-      <Route element={<ProtectedRoute />}>
-        <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<Navigate to="/admin/enquiries" replace />} />
-          <Route path="analytics" element={<AdminAnalytics />} />
-          <Route path="enquiries" element={<AdminEnquiries />} />
-          <Route path="hero-slider" element={<AdminHeroSlider />} />
-          <Route path="services" element={<AdminServices />} />
-          <Route path="products" element={<AdminProducts />} />
-          <Route path="team" element={<AdminTeam />} />
-          <Route path="testimonials" element={<AdminTestimonials />} />
-          <Route path="blog" element={<AdminBlog />} />
-          <Route path="brands" element={<AdminBrands />} />
-          <Route path="company" element={<AdminCompanyInfo />} />
-          <Route path="import" element={<AdminImportContent />} />
+    <ErrorBoundary>
+      <Routes>
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<Navigate to="/admin/enquiries" replace />} />
+            <Route path="analytics" element={<AdminAnalytics />} />
+            <Route path="enquiries" element={<AdminEnquiries />} />
+            <Route path="hero-slider" element={<AdminHeroSlider />} />
+            <Route path="services" element={<AdminServices />} />
+            <Route path="products" element={<AdminProducts />} />
+            <Route path="team" element={<AdminTeam />} />
+            <Route path="testimonials" element={<AdminTestimonials />} />
+            <Route path="blog" element={<AdminBlog />} />
+            <Route path="brands" element={<AdminBrands />} />
+            <Route path="company" element={<AdminCompanyInfo />} />
+            <Route path="import" element={<AdminImportContent />} />
+          </Route>
         </Route>
-      </Route>
-      <Route path="/*" element={<SiteChrome />} />
-    </Routes>
+        <Route path="/*" element={<SiteChrome />} />
+      </Routes>
+    </ErrorBoundary>
   )
 }
 
