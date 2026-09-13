@@ -400,6 +400,6 @@ export const heroImage =
 export const videoImage =
   'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80'
 export const officeImage =
-  'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1000&q=80'
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyVoAeps1Wk5AGxrJVu970Vp4JFZ0SeUB3_QZC4mFONQxEBuQ42wSOKcjK&s=10'
 export const processImage =
   'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80'

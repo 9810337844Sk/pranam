@@ -8,6 +8,7 @@ import {
 import { useEffect } from 'react'
 import { Nav } from '~/components/Nav'
 import { Footer } from '~/components/Footer'
+import { Preloader } from '~/components/Preloader'
 import appCss from '~/styles/app.css?url'
 
 export const Route = createRootRoute({
@@ -39,6 +40,7 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <RootDocument>
+      <Preloader />
       <Nav />
       <ScrollToTop />
       <Outlet />
