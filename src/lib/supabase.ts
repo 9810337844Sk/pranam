@@ -14,9 +14,12 @@ export const supabase =
  * Server client — only ever imported inside a server function.
  * Uses the service role key when present so inserts work while RLS keeps the
  * table unreadable from the browser.
+ * 
+ * Note: This is for server-side use only. For client-side, use the regular supabase client above.
  */
 export function supabaseAdmin() {
-  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY ?? anonKey
-  if (!url || !serviceKey) return null
-  return createClient(url, serviceKey, { auth: { persistSession: false } })
+  // For client-side only apps, just return the regular client
+  // Server-side apps would use: import.meta.env.VITE_SUPABASE_SERVICE_ROLE_KEY
+  if (!url || !anonKey) return null
+  return createClient(url, anonKey, { auth: { persistSession: false } })
 }
