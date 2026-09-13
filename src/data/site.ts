@@ -241,16 +241,16 @@ export const techStack = [
 export type Brand = { name: string; logo: string }
 
 export const brands: Brand[] = [
-  { name: 'Spotify', logo: 'https://api.myunicampus.com/6da490c2-415b-4732-9b44-b41fc1a2565b_1744952092980.png' },
+  { name: 'Shuva Electric', logo: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiiIk1QXCG3y9cze3n1WYMHNnNJ_IKcn33fqrxtFv-0muzAPsEgWh7kDDsSiPFo4KmkUf9o8xrVbC2rueJC0mPlLsj7ewe_B8P58qY6N1sBRAPrmMpG01K5fQHFsAaA9jeGeO718vHDrsvO7bQ8_BgBdHxe9FWxFf-WQDYtHDgi6paOy4AGqCqv8yh1u0Q/s1600/shuva.jpeg' },
   { name: 'Meta', logo: 'https://blog.logomyway.com/wp-content/uploads/2021/11/meta-logo.png' },
   { name: 'Bhojmandu', logo: 'https://bhojmandu.com/storage/business/2026-07-04-6a48ab9ea4675.png' },
   { name: 'Kantipur Studio', logo: 'https://kantipurstudio.com.np/final-logo.webp' },
   { name: 'Digital Kantipur', logo: 'https://www.digitalkantipur.com/logo%20image/logo%20ho%20digital%20kantipur(1).png' },
   { name: 'RBS Academy', logo: 'https://play-lh.googleusercontent.com/pWo4eMBVHpJg2EkX0RxVZcxt8_bNmOPgN2L0MEcLhtho0-RvKWexbISsyHUIlt7AxpyU-mQzFg9BOLZhihYMbTw=w240-h480-rw' },
-  { name: 'Battery Mandu', logo: 'https://www.batterymandu.com/assets/battery-mandu-logo-tNEPvBE_.jpg' },
+  { name: 'Battery Mandu', logo: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjLbaTl6vjpfHStvGsQ4TOy7F4BGU5h6lImkgtEsv7M6EH2BvAUzbybf4rbCYLOHcxgjGbdXpucpjZadVWE4TZZGus_rN3dv_dEO5gD77UoGCh46Dl2Y5qup359JzFAImI9MqQII-ZTEIQYtytSav-puEwLw1gOISTkap1ywfz3wCfNm1XuCmugYi91jRg/s1600/battery.jpeg' },
   { name: 'Google', logo: 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png' },
   { name: 'Apple', logo: 'https://play-lh.googleusercontent.com/SzuR2AGfx_7QREvPuOUzrZ66D2e61tHrU84BBP5vegFYN4P3k_LRxzMyM657Xg8bsUdKqg6tiHxAI-3DZ3al' },
-  { name: 'LinkedIn', logo: 'https://yt3.googleusercontent.com/i6KNxiy3gME-BulL4WnuGkTGqHuSYF8jl1WRn0rXftcJdSYK7dHKcJ3gLAaPc-KfhmLSYPwf824=s900-c-k-c0x00ffffff-no-rj' },
+  { name: 'Sunway College', logo: 'https://api.myunicampus.com/6da490c2-415b-4732-9b44-b41fc1a2565b_1744952092980.png' },
 ]
 
 export const processSteps = [
