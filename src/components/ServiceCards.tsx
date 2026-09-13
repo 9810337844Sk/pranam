@@ -29,7 +29,7 @@ const services = [
       'App store deployment'
     ],
     color: '#8b5cf6',
-    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=700&q=80'
+    image: 'https://www.etatvasoft.com/blog/wp-content/uploads/2022/08/mobile-app-development-methodologies.jpg'
   },
   {
     id: 3,
@@ -43,7 +43,7 @@ const services = [
       'Parent communication'
     ],
     color: '#ec4899',
-    image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=700&q=80'
+    image: 'https://www.elitesoftwaresuite.com/softwareimages/schoolms.png'
   },
   {
     id: 4,
@@ -57,7 +57,7 @@ const services = [
       'Analytics dashboard'
     ],
     color: '#f59e0b',
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=700&q=80'
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSd8IYcC3ORIA-j0Lkyl3XYOjwO1kDjumSLEDk9m-iFOmVjTMwPPrRFkdoa&s=10'
   },
   {
     id: 5,
@@ -71,7 +71,7 @@ const services = [
       'Multi-branch management'
     ],
     color: '#06b6d4',
-    image: 'https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&w=700&q=80'
+    image: 'https://www.restronp.com/blog-image/sweet%20shop.webp'
   },
   {
     id: 6,
@@ -85,7 +85,7 @@ const services = [
       'Ongoing support'
     ],
     color: '#10b981',
-    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=700&q=80'
+    image: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhbwcKf3N35C7rRRJk8ZQ1v18DWjy7SOulXEMWsOhUKofPehdoZcwtg7zqCcb-ChhFdNSTdHQH5kXGzxFAzbnXJlKQEKdm_XJ9Jxvh-aHpfD3MWGCDe9R3bBBng4D1UgdkmVSAKPaFGN3GYKgQxHEjK_thkGOf_7ES8f9P5iVAy5LcwLOEZrbyhjz3B6Eg/s1600/ecde4078-7106-4194-94e8-d7769a74ffbb.png'
   }
 ]
 
