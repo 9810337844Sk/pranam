@@ -2297,3 +2297,80 @@ section{padding-block:84px}
 @media (prefers-reduced-motion: reduce){
   .preloader-ring,.preloader-ring::after,.preloader-logo,.preloader-inner,.preloader-bar span{animation:none}
 }
+
+/* ============ HERE TO HELP (services CTA band) ============ */
+.h2h{
+  position:relative;
+  background:linear-gradient(120deg,#1A73E8,#0B57C9);
+  color:#fff;
+  /* the global `section{padding-block:84px}` would paint the band beyond the
+     waves, so spacing lives on the margin and on .h2h-inner instead */
+  padding-block:0;
+  margin-top:40px;
+}
+/* The waves are painted in the PAGE colour on top of the band, carving the
+   zig-zag out of it. Matching the gradient with a separate fill would seam. */
+.h2h-wave{
+  display:block;
+  width:100%;
+  height:clamp(34px,5.2vw,80px);
+  fill:var(--white);
+}
+.h2h-wave-top{margin-bottom:-1px}
+.h2h-wave-bottom{margin-top:-1px}
+.h2h-body{color:#fff}
+.h2h-inner{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:clamp(32px,6vw,80px);
+  align-items:center;
+  padding-block:clamp(24px,4vw,52px);
+}
+.h2h-title{
+  color:#fff;
+  font-size:clamp(30px,4.4vw,46px);
+  font-weight:800;
+  letter-spacing:-.01em;
+}
+.h2h-title span{color:var(--yellow)}
+.h2h-text{
+  margin:18px 0 0;
+  max-width:34rem;
+  color:rgba(255,255,255,.86);
+  font-size:clamp(15px,1.4vw,17px);
+}
+.h2h-link{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  margin-top:26px;
+  color:var(--yellow);
+  font-weight:700;
+}
+.h2h-link svg{
+  width:18px;height:18px;
+  fill:none;stroke:currentColor;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round;
+  transition:transform .2s;
+}
+.h2h-link:hover{color:var(--yellow-soft)}
+.h2h-link:hover svg{transform:translateX(4px)}
+.h2h-sign{
+  margin:28px 0 0;
+  font-family:var(--script);
+  font-size:19px;
+  color:rgba(255,255,255,.7);
+}
+.h2h-media{
+  width:clamp(220px,26vw,320px);
+  aspect-ratio:1;
+  border-radius:50%;
+  overflow:hidden;
+  box-shadow:0 22px 60px rgba(11,87,201,.38);
+}
+.h2h-media img{width:100%;height:100%;object-fit:cover}
+@media (max-width:860px){
+  .h2h-inner{grid-template-columns:1fr;justify-items:center;text-align:center}
+  .h2h-text{margin-inline:auto}
+  .h2h-media{order:-1;width:min(240px,62vw)}
+}
