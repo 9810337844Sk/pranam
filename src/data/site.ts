@@ -361,7 +361,7 @@ export const testimonials: Testimonial[] = [
     time: '3 weeks ago',
     quote:
       'Pranam Software created a fast, modern and professional website for Digital Kantipur. The team understood our requirements clearly, communicated well and delivered a polished website that works smoothly across devices.',
-    img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80',
+    img: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi-HIimdhZS2aeHSRM4-cGsez-nkaYJfIeaRpava4zbonjDwcPa0fn70UtA9FhxRltaCDIG8jYBBdFjre9CC5NopTArLH8yvSUTTBMEV6PnODwagQZ9zVXST0dAKYrVbfLOsUEjzEOr9LPnfhJCKTQnGdlTnC0cDKLiQB-VQDui8KVh0fN0ro70OhbpSGE/s320/Xantoz%20Vandaree.png',
   },
   {
     name: 'Aakriti Kharel',
@@ -371,7 +371,7 @@ export const testimonials: Testimonial[] = [
     time: '1 month ago',
     quote:
       'The Pranam Software team brought the Kantipur Studio website to life with a clean, elegant design and an excellent user experience. They were responsive throughout the project and delivered exactly what our brand needed.',
-    img: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80',
+    img: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEirMCftuTp_wgUxedmzfey7nDIy5nnpOuUE6md0jHh8i77G2nxSLSiD6WFE6yBy-mg8aODG6SfeSBR0xtLPmtjkeZ4uWGBOo-E6024Q1xFylAcKA-VvNxMRq6lCsarf61mYY90lYWMQwQd8im26hsmIZOLME7SvO44Aoazt2kD-GMLM4OsMMEz3eFUeN0U/s320/Aakriti%20Kharel.png',
   },
   {
     name: 'Ramesh Adhikari',
@@ -391,7 +391,7 @@ export const testimonials: Testimonial[] = [
     time: '2 months ago',
     quote:
       'Pranam Software developed a professional and easy-to-use website for Battery Mandu. The website is fast, works smoothly on mobile devices and presents our products clearly to customers. We are very satisfied with the result.',
-    img: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=200&q=80',
+    img: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgnUdqRoG0U1KJmO4eVCo5D9naWEzLiDwUhf9tb8yK3UNya-5ylVuBmtHH16fZJiyX6cx8Z5MesfkyxQASWrsQkm4eek6rfRJLe8hrYU3n9Isk5D5pMfc_omAnvsyq5UrexALUBjd6eTVL_lH3NcaUXyc2XBoSUQy-uKuzwBrWCpFDW8cSMAo_vUw8_H-Q/s320/Ranjan%20Kushwaha.png',
   },
 ]
 
