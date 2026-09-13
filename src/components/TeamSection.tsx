@@ -3,16 +3,6 @@ import { team as defaultTeam, type Member } from '~/data/site'
 import { useLiveContent } from '~/lib/content'
 import { Ph } from './Ph'
 
-// Modern color palette for team member backgrounds
-const teamColors = [
-  '#8B5CF6', // Violet
-  '#EC4899', // Pink
-  '#06B6D4', // Cyan
-  '#F59E0B', // Amber
-  '#10B981', // Emerald
-  '#6366F1', // Indigo
-]
-
 function useInView<T extends HTMLElement>() {
   const ref = useRef<T>(null)
   const [inView, setInView] = useState(false)
@@ -38,18 +28,16 @@ function useInView<T extends HTMLElement>() {
 
 function TeamCard({ member, index }: { member: Member; index: number }) {
   const { ref, inView } = useInView<HTMLDivElement>()
-  const bgColor = teamColors[index % teamColors.length]
 
   return (
     <div
       className={`team-member-card${inView ? ' in-view' : ''}`}
       style={{ 
-        transitionDelay: `${index * 90}ms`,
-        '--team-color': bgColor
-      } as React.CSSProperties}
+        transitionDelay: `${index * 90}ms`
+      }}
       ref={ref}
     >
-      <div className="team-member-image-wrapper" style={{ backgroundColor: bgColor }}>
+      <div className="team-member-image-wrapper">
         <Ph ini={member.ini} className="team-member-avatar" src={member.img} alt={member.name} />
       </div>
       
