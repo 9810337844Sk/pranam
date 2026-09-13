@@ -402,4 +402,4 @@ export const videoImage =
 export const officeImage =
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyVoAeps1Wk5AGxrJVu970Vp4JFZ0SeUB3_QZC4mFONQxEBuQ42wSOKcjK&s=10'
 export const processImage =
-  'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh_8zWQmZYxJZiCo7jHP-k3bS0xB2plC5L6JN5VL8ZGZxchh1OslCSp_4QVTmSJ1esVouK4lciog8TdhYqmCoX6T3lN0pY7c5b_4MT7MJuzN0wbjUNrK0Zlz9zisEABIclKeQjbRYeWTOB0DCT-zK4C6Cw46ku6fP_DReTJsNbBPKGHAPue79ECFSru4hc/s400/236878e5-a38f-4212-a31a-c7ab132ca2fc.png'
+  'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhgeWg-Qmd12HioQcva7JfvwkJ6rxQAB5CcAfgWnGs2ZKBicKWC_CT3u4lCuCpGBKPRq-LwkzZqriBKYHcHf7ELiNfxj1n12TrBYWqxmP1B3rj8YzUX8V43cLjOtXwVJwKkAVNOf1siMymhX0Uc8t0kjuJ2ohoYQ2fQeT09geBiFoog9xxgZBr84Y2TS-M/s1600/236878e5-a38f-4212-a31a-c7ab132ca2fc%20%281%29.png'
