@@ -4,6 +4,7 @@ import { Footer } from './components/Footer'
 import { Marquee } from './components/Marquee'
 import { AnalyticsTracker } from './components/AnalyticsTracker'
 import { ErrorBoundary } from './components/ErrorBoundary'
+import { Preloader } from './components/Preloader'
 
 // Import page components
 import Home from './pages/Home'
@@ -87,6 +88,7 @@ function SiteChrome() {
 function App() {
   return (
     <ErrorBoundary>
+      <Preloader />
       <Routes>
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route element={<ProtectedRoute />}>
