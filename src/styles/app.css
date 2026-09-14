@@ -305,34 +305,174 @@ section{padding-block:84px}
   transform: translateY(-10px);
 }
 
+/* One self-contained rounded box: the red sits INSIDE the card as a left
+   band plus the base the photo fades into, so nothing spills past the frame. */
 .team-card-inner {
   position: relative;
   width: 100%;
-  height: 480px;
+  aspect-ratio: 200 / 352;
+  background: #D4433C;
   border-radius: 20px;
   overflow: hidden;
-  background: linear-gradient(180deg, rgba(192, 57, 43, 0) 0%, rgba(192, 57, 43, 0.85) 70%, #C0392B 100%);
+}
+
+.team-pillar {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  background: #D4433C;
+  z-index: 1;
+}
+
+.team-watermark {
+  position: absolute;
+  left: 0;
+  bottom: 78px;
+  width: 16%;
+  text-align: center;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: .02em;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.16);
+  user-select: none;
+  white-space: nowrap;
 }
 
 .team-member-avatar {
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 84%;
+  height: auto;
+  border-radius: 0;
+  overflow: hidden;
+  z-index: 2;
+  /* .ph ships a blue placeholder gradient; keep the panel red so a missing
+     photo falls back into the band instead of flashing a different colour. */
+  background: #D4433C;
+}
+
+.team-member-avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: 1;
+  object-position: center top;
+  transition: transform .5s cubic-bezier(.16,1,.3,1);
 }
 
+.team-member-card:hover .team-member-avatar img {
+  transform: scale(1.04);
+}
+
+/* Fades the photo into the red base so the name keeps contrast while the
+   face area stays untinted. */
 .team-gradient-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(180deg, rgba(192, 57, 43, 0) 0%, rgba(192, 57, 43, 0.75) 65%, #C0392B 100%);
-  z-index: 2;
+  right: 0;
+  bottom: 0;
+  width: 84%;
+  height: 52%;
+  background: linear-gradient(180deg,
+    rgba(212, 67, 60, 0) 0%,
+    rgba(212, 67, 60, 0.18) 38%,
+    rgba(212, 67, 60, 0.62) 62%,
+    rgba(212, 67, 60, 0.94) 82%,
+    #D4433C 100%);
+  z-index: 3;
   pointer-events: none;
+}
+
+/* Darkens just the red base on hover so the profile buttons read clearly
+   against it without dimming the portrait above. */
+.team-hover-veil {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 46%;
+  background: linear-gradient(180deg,
+    rgba(10, 8, 8, 0) 0%,
+    rgba(10, 8, 8, 0.55) 45%,
+    rgba(10, 8, 8, 0.82) 100%);
+  opacity: 0;
+  transition: opacity .35s ease;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.team-member-card:hover .team-hover-veil,
+.team-member-card:focus-within .team-hover-veil {
+  opacity: 1;
+}
+
+.team-chevron {
+  position: absolute;
+  right: 16px;
+  bottom: 26px;
+  width: 30px;
+  height: 23px;
+  fill: rgba(255, 255, 255, 0.17);
+  z-index: 5;
+  pointer-events: none;
+  transition: opacity .3s ease;
+}
+
+.team-member-card:hover .team-chevron,
+.team-member-card:focus-within .team-chevron {
+  opacity: 0;
+}
+
+.team-social {
+  display: flex;
+  gap: 10px;
+  height: 0;
+  margin-top: 0;
+  opacity: 0;
+  transform: translateY(8px);
+  overflow: hidden;
+  transition: height .35s cubic-bezier(.16,1,.3,1),
+              margin-top .35s cubic-bezier(.16,1,.3,1),
+              opacity .3s ease,
+              transform .35s cubic-bezier(.16,1,.3,1);
+}
+
+.team-member-card:hover .team-social,
+.team-member-card:focus-within .team-social {
+  height: 36px;
+  margin-top: 12px;
+  opacity: 1;
+  transform: none;
+}
+
+.team-social-btn {
+  width: 36px;
+  height: 36px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(2px);
+  transition: background-color .2s, color .2s, border-color .2s, transform .2s;
+}
+
+.team-social-btn svg {
+  width: 17px;
+  height: 17px;
+}
+
+.team-social-btn:hover,
+.team-social-btn:focus-visible {
+  background: #fff;
+  border-color: #fff;
+  color: #B3322C;
+  transform: translateY(-2px);
 }
 
 .team-member-info {
@@ -340,30 +480,27 @@ section{padding-block:84px}
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 28px 24px;
-  z-index: 3;
+  padding: 0 20px 22px;
+  z-index: 6;
   text-align: left;
-  background: transparent;
 }
 
 .team-member-name {
-  font-size: 22px;
+  font-size: 19px;
   font-weight: 800;
   color: #fff;
-  margin: 0 0 6px 0;
+  margin: 0 0 2px 0;
   letter-spacing: -0.01em;
   line-height: 1.2;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .team-member-role {
-  font-size: 14px;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.82);
   text-transform: capitalize;
   letter-spacing: 0.02em;
   margin: 0;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* Responsive Design */
@@ -372,20 +509,12 @@ section{padding-block:84px}
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
   }
-  
-  .team-card-inner {
-    height: 450px;
-  }
 }
 
 @media (max-width: 900px) {
   .team-members-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
-  }
-  
-  .team-card-inner {
-    height: 420px;
   }
   
   .team-section-modern {
@@ -406,10 +535,6 @@ section{padding-block:84px}
     margin-right: auto;
   }
   
-  .team-card-inner {
-    height: 480px;
-  }
-  
   .team-section-modern {
     padding: 48px 0;
   }
@@ -427,11 +552,11 @@ section{padding-block:84px}
   }
   
   .team-member-name {
-    font-size: 20px;
+    font-size: 21px;
   }
-  
-  .team-member-info {
-    padding: 24px 20px;
+
+  .team-watermark {
+    font-size: 46px;
   }
 }
 

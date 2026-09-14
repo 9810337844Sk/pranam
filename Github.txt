@@ -1,0 +1,82 @@
+========================================
+PRANAM GITHUB DAILY WORKFLOW
+========================================
+
+
+1. GET THE LATEST TEAM CODE
+----------------------------------------
+Use this at the start of the day BEFORE working.
+
+git status
+
+If it says "working tree clean", run:
+
+git switch main
+git pull origin main
+git switch anurag-feature
+git merge main
+
+Now my local code has the latest team changes,
+and I am back on my own branch.
+
+IMPORTANT:
+I do my actual work on:
+anurag-feature
+
+I do NOT work directly on:
+main
+
+
+========================================
+2. PUSH MY WORK TO GITHUB
+========================================
+After I finish my changes and test them:
+
+git status
+
+git add .
+git commit -m "Describe what I changed"
+git push
+
+My changes will be pushed to:
+
+anurag-feature
+
+NOT directly to main.
+
+
+========================================
+IMPORTANT TEAM RULE
+========================================
+
+main = official team code
+
+anurag-feature = my work
+
+My workflow:
+
+GET LATEST:
+main → pull latest → anurag-feature
+
+SEND MY WORK:
+anurag-feature → commit → push → Pull Request
+
+My boss:
+Pull Request → Review → Approve → Merge into main → Deploy
+
+
+========================================
+IF I HAVE UNFINISHED CHANGES
+========================================
+
+Before updating from main, ALWAYS run:
+
+git status
+
+If files show as "modified" or "untracked",
+DO NOT blindly switch to main.
+
+Stop and check what the changes are first.
+
+
+========================================

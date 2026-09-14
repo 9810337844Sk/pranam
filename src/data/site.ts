@@ -289,6 +289,15 @@ export type Member = {
   role: string
   skills: string
   img: string
+  /** Per-person profile links. Fall back to the company accounts when unset. */
+  linkedin?: string
+  github?: string
+}
+
+/** Used by the team cards whenever a member has no profile link of their own. */
+export const teamSocialFallback = {
+  linkedin: 'https://www.linkedin.com/in/pranam-software-950111421/',
+  github: 'https://github.com/9810337844Sk',
 }
 
 export const team: Member[] = [
@@ -296,6 +305,8 @@ export const team: Member[] = [
     name: 'Sachin Kushwaha',
     ini: 'SK',
     role: 'ceo & founder',
+    linkedin: 'https://www.linkedin.com/in/sachin-kushwaha-77b682391/',
+    github: 'https://github.com/anurag-IT',
     skills: 'Strategic visionary | Enterprise Solutions | Business Growth',
     img: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjuWNCQYejuWjdWzJNQf6yhj2k3GcN1n1sXl-Lp5TuU6XcFY-v5zzUqr-EQMQHo3bT7B4jHr9NwKAuR19DlJvJqXRAsLdCBMKBJtjE2fY_ChAXQJpNk7pEgOIprF7Bf2cLXUnFyB9lM0r37hNtOPXONDhALX0UBf_wbffjPnihMGnYatZsoqyCLYowog2c/s1600/sachin.png',
   },
@@ -303,6 +314,8 @@ export const team: Member[] = [
     name: 'Anurag Thakur',
     ini: 'AT',
     role: 'senior developer',
+    linkedin: 'https://www.linkedin.com/in/anurag-thakur-101482343/',
+    github: 'https://github.com/anurag-IT',
     skills: 'Full-Stack Expert | Cloud Architecture | Scalable Systems',
     img: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi5tyzIzZU83GDRVCKOtlE4GnApSC6r9my4eH7v8vvc5E-oLX0CveT-TZjSGZQhtHC52kty1LLVV77DJSmMKXhUPbjsq3RdqV0aOWffpgdE0exj_F2CBxLXH_29SSdLl0aJfPHuQlZKEBPRu7NPZ1jf98DRU8shusI-PY24UDSPQ0_vrU-vyRj6YM5-9VI/s1600/anurag.jpeg',
   },
@@ -310,6 +323,8 @@ export const team: Member[] = [
     name: 'Harshit Chaudhary',
     ini: 'HC',
     role: 'lead developer',
+    linkedin: 'https://www.linkedin.com/in/harshit-chaudhary1010/',
+    github: 'https://github.com/harshit-chaudhary',
     skills: 'Modern Frameworks | Responsive Design | Problem Solver',
     img: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiQOp9geRo50M64pv3W99UEmWHff1oYChX07_ic2p_4qfkuuDmdBKldnS6OQlknKP5WXeJhAQYlzi-mTdan31iJ9RPGG26zTov0gkieB_onJ8SninB6iLTOwqh1V1bR0GXebKgRJv63cIb8wOShyphenhyphen3-BjZ9meUf3eilx8iduosSWXWJxdAGb6Ejp1Jx2cOc/s1600/WhatsApp%20Image%202026-09-03%20at%201.33.28%20PM.jpeg',
   },
@@ -317,6 +332,8 @@ export const team: Member[] = [
     name: 'Kashish Shrestha',
     ini: 'KS',
     role: 'devops engineer',
+    linkedin: 'https://www.linkedin.com/in/shresthakashish/',
+    github: 'https://github.com/kashish-shrestha',
     skills: 'Cloud Infrastructure | CI/CD Automation | Reliable Deployments',
     img: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg4i99RueNnrxSjnb5l2eBR_N_PWItABYcJdCWNE1gfYmQsXrGXrZXISGSic0aGrA2Rk31HSFwZLK3xRgy6l1xvj8eUL9DR-dU8_VYgro6u5FQEY0Fte5FRFRCXkwB_lA3CLizNVpwvAYH8KztxhqvQNemvJI6dR45l_7M5gHNryh5Etbn4IDZ9q_pCCE8/s600/cf30a90f-1270-48e7-8c8d-c769fd1eb876%20%281%29.jpg',
   },
@@ -324,6 +341,8 @@ export const team: Member[] = [
     name: 'Garima Chaudhary',
     ini: 'GC',
     role: 'digital marketer',
+    linkedin: 'https://www.linkedin.com/in/garima-chaudhary-814779284/',
+    github: 'https://github.com/garima-chaudhary',
     skills: 'Digital Marketing | Content Strategy | Campaign Expert',
     img: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhx1QqndiFeqEhSYumldpnPhKLULEFXGCZOhUvlzUx4ymrc5C_UBhmE4WdtJIRS2sZjDWEKTmRkVIiita9wtxoDUJ-ORC5h3l_NwR3HZYvCXyzTP2pT4to-7zi_FXjBQvjSIjtQb9G2J0TQXTn3T3coJpeaBEZZJNiJTKzunUyyZdJn7iuwp9LaE4sycQ/s1600/IMG-20260105-WA0006gdhdhdd-removebg-preview.png',
   },
@@ -331,6 +350,8 @@ export const team: Member[] = [
     name: 'Arbindra Kharel',
     ini: 'AK',
     role: 'content generation',
+    linkedin: 'https://www.linkedin.com/in/arbindrakharel/',
+    github: 'https://github.com/arbindra-kharel',
     skills: 'DevOps | Brand Storytelling | AWS Engineer',
     img: 'https://www.arbindrakharel.com.np/images/profile-1.jpeg',
   },
