@@ -1,5 +1,6 @@
 import { ServiceCards } from '../components/ServiceCards'
 import { PricingSection } from '../components/PricingSection'
+import { HereToHelp } from '../components/HereToHelp'
 import { PageHero } from '../components/PageHero'
 import { Seo } from '../components/Seo'
 
@@ -14,6 +15,7 @@ export default function Services() {
       <PageHero title="Our Services" />
       <ServiceCards />
       <PricingSection />
+      <HereToHelp />
     </>
   )
 }
